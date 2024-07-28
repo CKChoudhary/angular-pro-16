@@ -8,6 +8,8 @@ import { TodoItem } from "./todoItem";
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+   showComplete: boolean = false;
     private list = new TodoList("Bob", [
         new TodoItem("Go for run", true),
         new TodoItem("Get flowers"),
@@ -19,7 +21,18 @@ export class AppComponent {
     }
 
     get itemCount(): number {
-        return this.list.Items
+        return this.list.items
             .filter(item => !item.complete).length;
+    }
+  
+  get items(): readonly TodoItem[] {
+        return this.list.items
+            .filter(item => this.showComplete || !item.complete);
+    }
+  
+    addItem(newItem: string) {
+        if (newItem != "") {
+            this.list.addItem(newItem);
+        }
     }
 }

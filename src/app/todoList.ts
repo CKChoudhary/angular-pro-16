@@ -6,7 +6,7 @@ export class TodoList {
         // no statements required
     }
  
-    get Items(): readonly TodoItem[]  { 
+    get items(): readonly TodoItem[]  { 
         return this.todoItems;
     }
  
